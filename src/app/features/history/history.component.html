@@ -1,0 +1,34 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Fecha de búsqueda -->
+  <ng-container matColumnDef="searchDate">
+    <th mat-header-cell *matHeaderCellDef>Fecha</th>
+    <td mat-cell *matCellDef="let element">{{ element.searchDate | date:'short' }}</td>
+  </ng-container>
+
+  <!-- Texto completo -->
+  <ng-container matColumnDef="catFact">
+    <th mat-header-cell *matHeaderCellDef style="width: 40%">Dato</th>
+    <td mat-cell *matCellDef="let element">{{ element.catFact }}</td>
+  </ng-container>
+
+  <!-- Query -->
+  <ng-container matColumnDef="query">
+    <th mat-header-cell *matHeaderCellDef>Query</th>
+    <td mat-cell *matCellDef="let element">{{ element.query }}</td>
+  </ng-container>
+
+  <!-- URL del gif -->
+  <ng-container matColumnDef="gifUrl">
+    <th mat-header-cell *matHeaderCellDef>GIF</th>
+    <td mat-cell *matCellDef="let element"><img [src]="element.gifUrl" width="50"></td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['searchDate', 'catFact', 'query', 'gifUrl']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['searchDate', 'catFact', 'query', 'gifUrl']"></tr>
+</table>
+
+<mat-paginator [length]="dataSource.data.length"
+               [pageSize]="5"
+               [pageSizeOptions]="[5, 10, 25]"
+               showFirstLastButtons>
+</mat-paginator>

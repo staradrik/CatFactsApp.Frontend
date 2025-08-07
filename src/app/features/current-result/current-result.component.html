@@ -1,0 +1,25 @@
+<!-- Spinner centrado general -->
+<div *ngIf="loading" class="loading-container">
+  <mat-spinner></mat-spinner>
+</div>
+
+<!-- Contenido principal cuando NO está cargando general ni hay error -->
+<div class="container" *ngIf="!loading && !errorBoolean">
+  <div class="content">
+    <div class="gif">
+      <ng-container *ngIf="loadingGif; else showImage">
+        <mat-spinner diameter="100"></mat-spinner>
+      </ng-container>
+      <ng-template #showImage>
+        <img *ngIf="imageGift" [src]="imageGift" alt="Gif relacionado" />
+      </ng-template>
+    </div>
+    <div class="fact-text">
+      <p>{{ factGift }}</p>
+      <button mat-raised-button color="primary" (click)="refreshGif()">Refrescar GIF</button>
+    </div>
+  </div>
+</div>
+
+<!-- Mensaje de error -->
+<div *ngIf="errorBoolean" class="error">{{ error }}</div>
